@@ -27,10 +27,11 @@ public class CustomizedExceptionDetails extends ResponseEntityExceptionHandler {
         return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
     }
 
-    //s@Override
-   // protected ResponseEntity<ErrorDetails> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-     //   return this.handleExceptionInternal(ex, (Object)null, headers, status, request);
-    //}
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));
+        return new ResponseEntity(errorDetails, HttpStatus.NOT_FOUND);
+    }
 
 
 

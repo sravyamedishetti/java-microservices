@@ -4,6 +4,7 @@ import com.example.springboot.restwebservice.bean.PrintHello;
 import com.example.springboot.restwebservice.exception.UserNotFoundException;
 import com.example.springboot.restwebservice.user.User;
 import com.example.springboot.restwebservice.user.UserDaoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,7 +47,7 @@ public class RestApi {
     }
 
     @PostMapping("/addUser")
-    public ResponseEntity<User> addUser(@RequestBody User user) {
+    public ResponseEntity<User> addUser(@Valid @RequestBody User user) {
         userDaoService.addUser(user);
         return ResponseEntity.created(null).build();
     }
