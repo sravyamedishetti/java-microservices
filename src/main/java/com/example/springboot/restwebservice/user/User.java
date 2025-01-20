@@ -1,5 +1,6 @@
 package com.example.springboot.restwebservice.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
@@ -10,8 +11,10 @@ public class User {
     private Integer id;
 
     @Size(min=2, message = "Username should have minimum of two characters")
+    @JsonProperty("user_name")
     private String username;
     @Past(message = "Birth date should be in past")
+    @JsonProperty("birth_date")
     private LocalDate birthDate;
 
     User(Integer id, String username, LocalDate birthDate) {
