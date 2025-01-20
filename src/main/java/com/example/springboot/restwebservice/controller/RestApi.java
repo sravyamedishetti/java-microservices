@@ -6,13 +6,23 @@ import com.example.springboot.restwebservice.user.User;
 import com.example.springboot.restwebservice.user.UserDaoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContext;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 public class RestApi {
+
+    private MessageSource messageSource;
+
+    public RestApi(MessageSource messageSource){
+        this.messageSource=messageSource;
+    }
 
     @Autowired
     UserDaoService userDaoService;
@@ -26,6 +36,14 @@ public class RestApi {
     public PrintHello helloWorldPrint(){
         return new PrintHello("Hello-World");
     }
+
+    @GetMapping("/hello-world-i18n")
+    public String helloWorldPrintI18n(){
+        Locale locale = LocaleContextHolder.getLocale();
+        return messageSource.getMessage("good.morning.message",null, "Default Message", locale);
+       // return new PrintHello("Hello-World");
+    }
+
 
     @GetMapping("/path-variable/{name}")
     public PrintHello pathVariable(@PathVariable String name) {
