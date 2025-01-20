@@ -19,5 +19,15 @@ public class VersionPersonData {
         return new PersonV2(new Name("Sravya","Medishetti"));
     }
 
+    @GetMapping(path="/v1", params = "version=1")
+    public PersonV1 getFirstVersionOfPersonRequestParam(){
+        return new PersonV1("Sravya");
+    }
+
+    @GetMapping(path="/v2", params = "version=2")
+    public PersonV2 getSecondVersionOfPersonRequestParam(){
+        return new PersonV2(new Name("Sravya", "Medishetti"));
+    }
+
 
 }
