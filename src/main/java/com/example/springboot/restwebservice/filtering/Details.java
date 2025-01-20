@@ -3,10 +3,10 @@ package com.example.springboot.restwebservice.filtering;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties({"f1","f3"})
+//@JsonIgnoreProperties({"f1","f3"})
 public class Details {
     private String f1;
-    @JsonIgnore
+    //@JsonIgnore
     private String f2;
     private String f3;
     private String f4;
